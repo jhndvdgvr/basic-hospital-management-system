@@ -19,6 +19,8 @@ import { NZ_ICONS } from 'ng-zorro-antd/icon';
 import { IconDefinition } from '@ant-design/icons-angular';
 import * as AllIcons from '@ant-design/icons-angular/icons';
 import { NzIconModule } from 'ng-zorro-antd/icon';
+import { NzModalModule } from 'ng-zorro-antd/modal';
+import { PatientDetailsComponent } from './patient-details/patient-details.component';
 
 
 registerLocaleData(en);
@@ -31,7 +33,8 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons).map(key => antDesign
 @NgModule({
   declarations: [
     AppComponent,
-    PatientListComponent
+    PatientListComponent,
+    PatientDetailsComponent
   ],
   imports: [
     BrowserModule,
@@ -42,7 +45,8 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons).map(key => antDesign
     NzButtonModule,
     NzGridModule,
     NzTableModule,
-    NzIconModule
+    NzIconModule,
+    NzModalModule
   ],
   providers: [ { provide: NZ_I18N, useValue: en_US }, { provide: NZ_ICONS, useValue: icons } ],
   bootstrap: [AppComponent]
