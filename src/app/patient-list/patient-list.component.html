@@ -1,0 +1,44 @@
+<br/>
+
+<div nz-row>
+  <div nz-col nzSpan="4"></div>
+  <div nz-col nzSpan="16">
+    <br/>
+    <button nz-button nzType="primary"><i nz-icon nzType="plus" nzTheme="outline"></i> Add Patient</button>
+    <br/><br/>
+    <nz-table #basicTable>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Age</th>
+          <th>Sex</th>
+          <th>Check-in</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- <tr *ngFor="let data of basicTable.data"> -->
+        <tr> 
+          <td>John Doe</td>
+          <td>25</td>
+          <td>Male</td>
+          <td>12/12/21</td>
+          <td>
+            <div nz-row>
+              <div nz-col nzSpan="8">
+                <button nz-button nzType="text"><i nz-icon nzType="edit" nzTheme="outline"></i></button>
+              </div>
+              <div nz-col nzSpan="8">
+                <button nz-button nzType="text"><i nz-icon nzType="delete" nzTheme="outline"></i></button>
+              </div>
+              <div nz-col nzSpan="8">
+                <button nz-button nzType="text"><i nz-icon nzType="user" nzTheme="outline"></i></button>
+              </div>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </nz-table>
+  </div>
+  <div nz-col nzSpan="4"></div>
+</div>
