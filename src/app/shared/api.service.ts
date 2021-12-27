@@ -51,6 +51,13 @@ export class ApiService {
     }))
   }
 
+  updateHistory(data : any, id:number){
+    return this.http.put<any>("http://localhost:3000/history/"+id, data)
+    .pipe(map((res:any)=>{
+      return res;
+    }))
+  }
+
   getPatientHistory(id:number){
     return this.http.get<any>("http://localhost:3000/history/"+id)
     .pipe(map((res:any)=>{

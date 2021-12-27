@@ -112,6 +112,9 @@ export class PatientDetailsComponent implements OnInit {
       this.validateForm.controls["smoking"].setValue(result.smoking);
       this.validateForm.controls["alcohol"].setValue(result.alcohol);
       this.validateForm.controls["drugUsage"].setValue(result.drugUsage);
+      this.validateForm.controls["surgeries"].setValue(result.surgeries);
+      this.validateForm.controls["otherDrugUsage"].setValue(result.otherDrugUsage);
+      this.validateForm.controls["otherSurgeries"].setValue(result.otherSurgeries);
     });
   }
 
@@ -186,7 +189,7 @@ export class PatientDetailsComponent implements OnInit {
     this.patientHistoryObj.otherSurgeries = this.validateForm.value.otherSurgeries;
     
 
-    this.api.updatePatient(this.patientHistoryObj, this.patientId)
+    this.api.updateHistory(this.patientHistoryObj, this.patientId)
     .subscribe(result => {
       this.notification.create(
         "success",
