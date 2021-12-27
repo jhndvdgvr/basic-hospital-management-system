@@ -8,7 +8,7 @@ For initial setup
 
 For running json-server
 1. Open terminal/command prompt or use VS Code terminal
-2. Run json-server --watch db.json inside the folder
+2. Run json-server --watch db.json inside the basic-hospital-management-system folder
 3. Check here if the server is running : http://localhost:3000/patients
 
 For Running Basic Management System
