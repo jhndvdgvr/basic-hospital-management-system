@@ -4,9 +4,9 @@
   <div nz-col nzSpan="4"></div>
   <div nz-col nzSpan="16">
     <br/>
-    <button nz-button nzType="primary" class="add-patient-button"><i nz-icon nzType="plus" nzTheme="outline"></i> Add Patient</button>
+    <button nz-button nzType="primary" class="add-patient-button" (click)="showModal(false, null)"><i nz-icon nzType="plus" nzTheme="outline"></i> Add Patient</button>
     <br/><br/>
-    <nz-table #basicTable>
+    <nz-table [nzData]="['']">
       <thead>
         <tr>
           <th>Name</th>
@@ -17,19 +17,18 @@
         </tr>
       </thead>
       <tbody>
-        <!-- <tr *ngFor="let data of basicTable.data"> -->
-        <tr> 
-          <td>John Doe</td>
-          <td>25</td>
-          <td>Male</td>
-          <td>12/12/21</td>
+        <tr *ngFor="let patient of patientList"> 
+          <td>{{patient.name}}</td>
+          <td>{{patient.age}}</td>
+          <td>{{patient.sex}}</td>
+          <td>{{patient.checkInDate}}</td>
           <td>
             <div nz-row>
               <div nz-col nzSpan="8">
-                <button nz-button nzType="text" (click)="showModal()"><i nz-icon nzType="edit" nzTheme="outline"></i></button>
+                <button nz-button nzType="text" (click)="showModal(true, patient)"><i nz-icon nzType="edit" nzTheme="outline"></i></button>
               </div>
               <div nz-col nzSpan="8">
-                <button nz-button nzType="text"><i nz-icon nzType="delete" nzTheme="outline"></i></button>
+                <button nz-button nzType="text" (click)="deletePatient(patient)"><i nz-icon nzType="delete" nzTheme="outline"></i></button>
               </div>
               <div nz-col nzSpan="8">
                 <button routerLink="/patient-details" nz-button nzType="text"><i nz-icon nzType="user" nzTheme="outline"></i></button>
@@ -41,13 +40,74 @@
     </nz-table>
   </div>
   <div nz-col nzSpan="4"></div>
-  <!-- <button nz-button [nzType]="'primary'" (click)="showModal()"><span>Show Modal</span></button> -->
-  <nz-modal nzTitle="Add Patient" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()">
+  
+  <nz-modal [(nzVisible)]="isVisible" nzTitle="Add Patient"  (nzOnOk)="submitForm()" nzOkText="Save" (nzOnCancel)="handleCancel()">
     <ng-container *nzModalContent>
-      <p>Add patient modal content</p>
+      <form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()">
+        
+        <nz-form-item>
+          <nz-form-label
+            [nzSm]="6"
+            [nzXs]="24"
+            nzFor="name"
+            nzRequired
+          >
+            <span>Name</span>
+          </nz-form-label>
+          <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Please input your name!">
+            <input nz-input id="name" formControlName="name" />
+          </nz-form-control>
+        </nz-form-item>
+
+        <nz-form-item>
+          <nz-form-label
+            [nzSm]="6"
+            [nzXs]="24"
+            nzFor="age"
+            nzRequired
+          >
+            <span>Age</span>
+          </nz-form-label>
+          <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Please input your age!">
+            <input nz-input id="age" formControlName="age" />
+          </nz-form-control>
+        </nz-form-item>
+
+        <nz-form-item>
+          <nz-form-label
+            [nzSm]="6"
+            [nzXs]="24"
+            nzFor="age"
+            nzRequired
+          >
+            <span>Sex</span>
+          </nz-form-label>
+          <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Please select your sex!">
+            <nz-radio-group id="sex" formControlName="sex">
+              <label nz-radio nzValue="male">Male</label>
+              <label nz-radio nzValue="female">Female</label>
+              <label nz-radio nzValue="undisclosed">Undisclosed</label>
+            </nz-radio-group>
+          </nz-form-control>
+        </nz-form-item>
+        
+        <nz-form-item>
+          <nz-form-label
+            [nzSm]="6"
+            [nzXs]="24"
+            nzFor="checkInDate"
+            nzRequired
+          >
+            <span>Check-in Date</span>
+          </nz-form-label>
+          <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Please select check-in date!">
+            <nz-date-picker formControlName="checkInDate"></nz-date-picker>
+          </nz-form-control>
+        </nz-form-item>
+      </form>
     </ng-container>
   </nz-modal>
-  <nz-modal [(nzVisible)]="isVisible" nzTitle="Edit Patient" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()">
+  <nz-modal nzTitle="Edit Patient" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()">
     <ng-container *nzModalContent>
       <p>Edit patient modal content</p>
     </ng-container>

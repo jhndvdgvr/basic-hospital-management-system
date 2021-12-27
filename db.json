@@ -1,0 +1,25 @@
+{
+  "patients": [
+    {
+      "id": 1,
+      "name": "david1",
+      "age": "21",
+      "sex": "male",
+      "checkInDate": "12/27/2021"
+    },
+    {
+      "id": 2,
+      "name": "david222",
+      "age": "22",
+      "sex": "male",
+      "checkInDate": "12/27/2021"
+    },
+    {
+      "id": 3,
+      "name": "davdd32",
+      "age": "23",
+      "sex": "male",
+      "checkInDate": "12/08/2021"
+    }
+  ]
+}
