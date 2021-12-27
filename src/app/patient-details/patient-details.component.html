@@ -1,1 +1,119 @@
-<p>patient-details works!</p>
+
+<br/>
+<div nz-row>
+    <div nz-col nzSpan="4"></div>
+    <div nz-col nzSpan="16">
+        <nz-card nzTitle="{{patientDetails.name}} History">
+            <form nz-form [formGroup]="validateForm">
+            <!-- <form nz-form> -->
+                <nz-form-label>
+                    <span>Basic Stats</span>
+                </nz-form-label>
+                <nz-form-item>
+                  <nz-form-label
+                    [nzSm]="3"
+                    [nzXs]="24"
+                    nzFor="height"
+                    nzRequired
+                  >
+                    <span>Height (cm)</span>
+                  </nz-form-label>
+                  <nz-form-control [nzSm]="4" [nzXs]="24" nzErrorTip="Please input your height!">
+                    <input nz-input-number id="height" formControlName="height" (keypress)="computeBmi($event)"/>
+                  </nz-form-control>
+                  <nz-form-label
+                    [nzSm]="3"
+                    [nzXs]="24"
+                    nzFor="weight"
+                    nzRequired
+                  >
+                    <span>Weight (kg)</span>
+                  </nz-form-label>
+                  <nz-form-control [nzSm]="4" [nzXs]="24" nzErrorTip="Please input your weight!">
+                    <input nz-input-number id="weight" formControlName="weight" (keypress)="computeBmi($event)"/>
+                  </nz-form-control>
+                  <nz-form-label
+                    [nzSm]="4"
+                    [nzXs]="24"
+                    nzFor="bmi"
+                    nzRequired
+                  >
+                    <span>Body Mass Index</span>
+                  </nz-form-label>
+                  <nz-form-control [nzSm]="4" [nzXs]="24">
+                    <span>{{bmi}}</span>
+                  </nz-form-control>
+                </nz-form-item>
+                <nz-form-label>
+                    <span>Smoking</span>
+                </nz-form-label>
+                <nz-form-item>
+                    <nz-form-control nzErrorTip="Please select smoking usage!">
+                        <nz-radio-group formControlName="smoking">
+                            <label nz-radio nzValue="Heavy Smoker">Heavy Smoker</label>
+                            <label nz-radio nzValue="Moderate Smoker">Moderate Smoker</label>
+                            <label nz-radio nzValue="Light Smoker">Light Smoker</label>
+                            <label nz-radio nzValue="Casual Smoker">Casual Smoker</label>
+                            <label nz-radio nzValue="Non-Smoker">Non-Smoker</label>
+                        </nz-radio-group>
+                    </nz-form-control>
+                </nz-form-item>
+                <nz-form-label>
+                    <span>Alcohol Drinking</span>
+                </nz-form-label>
+                <nz-form-item>
+                    <nz-form-control nzErrorTip="Please select alcohol usage!">
+                        <nz-radio-group formControlName="alcohol">
+                            <label nz-radio nzValue="Heavy Drinker">Heavy Drinker</label>
+                            <label nz-radio nzValue="Moderate Drinker">Moderate Drinker</label>
+                            <label nz-radio nzValue="Light Drinker">Light Drinker</label>
+                            <label nz-radio nzValue="Casual Drinker">Casual Drinker</label>
+                            <label nz-radio nzValue="Non-Drinker">Non-Drinker</label>
+                        </nz-radio-group>
+                    </nz-form-control>
+                </nz-form-item>
+                <nz-form-label>
+                    <span>Drug Usage</span>
+                </nz-form-label>
+                <nz-form-item>
+                    <nz-form-control nzErrorTip="Please select drug usage!">
+                        <nz-checkbox-group [(ngModel)]="drugOptions" formControlName="drugUsage" (ngModelChange)="logDrugs()"></nz-checkbox-group>
+                    </nz-form-control>
+                    <nz-form-control>
+                        <nz-form-label>
+                            <span>Other</span>
+                        </nz-form-label>
+                        <input nz-input-number id="otherDrugUsage" formControlName="otherDrugUsage" />
+                    </nz-form-control>
+                </nz-form-item>
+
+                <nz-form-label>
+                    <span>Surgeries</span>
+                </nz-form-label>
+                <nz-form-item>
+                    <nz-form-control nzErrorTip="Please select drug usage!">
+                        <nz-checkbox-group [(ngModel)]="surgeriesOptions" formControlName="surgeries" (ngModelChange)="logSurgeries()"></nz-checkbox-group>
+                    </nz-form-control>
+                    <nz-form-control>
+                        <nz-form-label>
+                            <span>Other</span>
+                        </nz-form-label>
+                        <input nz-input-number id="otherSurgeries" formControlName="otherSurgeries" />
+                    </nz-form-control>
+                </nz-form-item>
+            </form>
+        </nz-card>
+        <br/>
+        <nz-form-item nz-row class="register-area" style="float:right; margin-left: 5px;">
+            <nz-form-control>
+              <button nz-button nzType="default" (click)="goBack()">Back to Dashboard</button>
+            </nz-form-control>
+        </nz-form-item>
+        <nz-form-item nz-row class="register-area" style="float:right">
+            <nz-form-control>
+              <button nz-button nzType="primary" (click)="submitForm()">Save</button>
+            </nz-form-control>
+        </nz-form-item>
+    </div>
+    <div nz-col nzSpan="4"></div>
+</div>

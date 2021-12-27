@@ -4,6 +4,7 @@ import { NzFormTooltipIcon } from 'ng-zorro-antd/form';
 import { ApiService } from './../shared/api.service';
 import { PatientModel } from './patient-list.model';
 import * as moment from 'moment';
+import { NzNotificationService } from 'ng-zorro-antd/notification';
 
 @Component({
   selector: 'app-patient-list',
@@ -13,8 +14,14 @@ import * as moment from 'moment';
 export class PatientListComponent implements OnInit {
 
   isVisible = false;
+  isDeleteModalVisible = false;
   validateForm!: FormGroup;
   patientModelObj : PatientModel = new PatientModel();
+  formModalTitle = 'Add Patient';
+  selectedPatient = {
+    name: "",
+    id: 0
+  };
   forUpdate = false;
   patientList !: any
   dateFormat = "MM/dd/yyyy";
@@ -23,7 +30,10 @@ export class PatientListComponent implements OnInit {
     theme: 'twotone'
   };
 
-  constructor(private fb: FormBuilder, private api: ApiService) {}
+  constructor(
+    private fb: FormBuilder, 
+    private api: ApiService, 
+    private notification: NzNotificationService) {}
 
   ngOnInit(): void {
     this.validateForm = this.fb.group({
@@ -38,7 +48,6 @@ export class PatientListComponent implements OnInit {
 
   submitForm(): void {
     if (this.validateForm.valid) {
-      console.log('submit', this.validateForm.value);
       if (this.forUpdate) {
         this.updatePatient();
       } else {
@@ -62,13 +71,20 @@ export class PatientListComponent implements OnInit {
 
     this.api.addPatient(this.patientModelObj)
     .subscribe(result => {
-      console.log(result);
-      alert("Patient added successfully!");
+      this.notification.create(
+        "success",
+        'Success!',
+        'Successfully added new patient!'
+      );
       this.getAllPatient();
       this.validateForm.reset();
       this.handleCancel();
     }, error => {
-      alert("Something went wrong, Please try again.");
+      this.notification.create(
+        "error",
+        'error!',
+        'Something went wrong, please try again later.'
+      );
     }) 
   }
 
@@ -79,11 +95,20 @@ export class PatientListComponent implements OnInit {
     })
   }
 
-  deletePatient(patient: any){
-    this.api.deletePatient(patient, patient.id)
+  deletePatient(){
+    this.api.deletePatient(this.selectedPatient, this.selectedPatient.id)
     .subscribe(result => {
-      alert("patient deleted");
+      this.notification.create(
+        "success",
+        'Success!',
+        'Successfully deleted patient!'
+      );
       this.getAllPatient();
+      this.closeDeleteModal();
+      this.selectedPatient = {
+        name: "",
+        id: 0
+      };
     })
   }
 
@@ -93,7 +118,6 @@ export class PatientListComponent implements OnInit {
     this.validateForm.controls["age"].setValue(patient.age);
     this.validateForm.controls["sex"].setValue(patient.sex);
     this.validateForm.controls["checkInDate"].setValue(patient.checkInDate);
-    // this.showModal();
   }
 
   updatePatient(){
@@ -104,7 +128,11 @@ export class PatientListComponent implements OnInit {
     console.log(this.patientModelObj)
     this.api.updatePatient(this.patientModelObj, this.patientModelObj.id)
     .subscribe(result => {
-      alert("patient updated");
+      this.notification.create(
+        "success",
+        'Success!',
+        'Successfully updated patient!'
+      );
       this.getAllPatient();
       this.validateForm.reset();
       this.handleCancel();
@@ -112,7 +140,12 @@ export class PatientListComponent implements OnInit {
   }
 
   onDelete(patient: any){
+    this.isDeleteModalVisible = true;
+    this.selectedPatient = patient;
+  }
 
+  closeDeleteModal(){
+    this.isDeleteModalVisible = false;
   }
 
   confirmationValidator = (control: FormControl): { [s: string]: boolean } => {
@@ -130,20 +163,20 @@ export class PatientListComponent implements OnInit {
     if (forUpdate) {
       this.onEdit(patient);
       this.forUpdate = true;
+      this.formModalTitle = "Edit Patient"
     } else {
       this.patientModelObj.id = 0;
+      this.formModalTitle = "Add Patient"
     }
     this.isVisible = true;
   }
 
   handleOk(): void {
-    console.log('Button ok clicked!');
     this.isVisible = false;
     this.forUpdate = false;
   }
 
   handleCancel(): void {
-    console.log('Button cancel clicked!');
     this.isVisible = false;
     this.forUpdate = false;
     this.getAllPatient();

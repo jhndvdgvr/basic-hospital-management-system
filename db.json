@@ -3,23 +3,140 @@
     {
       "id": 1,
       "name": "david1",
-      "age": "21",
-      "sex": "male",
-      "checkInDate": "12/27/2021"
-    },
-    {
-      "id": 2,
-      "name": "david222",
       "age": "22",
       "sex": "male",
       "checkInDate": "12/27/2021"
     },
     {
-      "id": 3,
-      "name": "davdd32",
-      "age": "23",
+      "id": 4,
+      "height": "160",
+      "weight": "50",
+      "bmi": "17.90",
+      "smoking": "Non-Smoker",
+      "alcohol": "Casual Drinker",
+      "drugUsage": [
+        {
+          "label": "Amphetamines",
+          "value": "Amphetamines",
+          "checked": false
+        },
+        {
+          "label": "Heroine",
+          "value": "Heroine",
+          "checked": false
+        },
+        {
+          "label": "Barbiturates",
+          "value": "Barbiturates",
+          "checked": false
+        },
+        {
+          "label": "Marijuana",
+          "value": "Marijuana",
+          "checked": false
+        },
+        {
+          "label": "No Drugs",
+          "value": "No Drugs",
+          "checked": true
+        }
+      ],
+      "otherDrugUsage": null,
+      "surgeries": [
+        {
+          "label": "Heart Surgeries",
+          "value": "Heart Surgeries",
+          "checked": false
+        },
+        {
+          "label": "Breast Surgery",
+          "value": "Breast Surgery",
+          "checked": false
+        },
+        {
+          "label": "Leg Surgery",
+          "value": "Leg Surgery",
+          "checked": false
+        },
+        {
+          "label": "Arm Surgery",
+          "value": "Arm Surgery",
+          "checked": false
+        }
+      ],
+      "otherSurgeries": null
+    },
+    {
+      "id": 5,
+      "name": "david3",
+      "age": "26",
       "sex": "male",
-      "checkInDate": "12/08/2021"
+      "checkInDate": "12/27/2021"
+    }
+  ],
+  "history": [
+    {
+      "id": 1,
+      "weight": 50
+    },
+    {
+      "id": 4,
+      "height": "160",
+      "weight": "50",
+      "bmi": "17.90",
+      "smoking": "Non-Smoker",
+      "alcohol": "Casual Drinker",
+      "drugUsage": [
+        {
+          "label": "Amphetamines",
+          "value": "Amphetamines",
+          "checked": false
+        },
+        {
+          "label": "Heroine",
+          "value": "Heroine",
+          "checked": false
+        },
+        {
+          "label": "Barbiturates",
+          "value": "Barbiturates",
+          "checked": false
+        },
+        {
+          "label": "Marijuana",
+          "value": "Marijuana",
+          "checked": false
+        },
+        {
+          "label": "No Drugs",
+          "value": "No Drugs",
+          "checked": false
+        }
+      ],
+      "otherDrugUsage": null,
+      "surgeries": [
+        {
+          "label": "Heart Surgeries",
+          "value": "Heart Surgeries",
+          "checked": false
+        },
+        {
+          "label": "Breast Surgery",
+          "value": "Breast Surgery",
+          "checked": false
+        },
+        {
+          "label": "Leg Surgery",
+          "value": "Leg Surgery",
+          "checked": false
+        },
+        {
+          "label": "Arm Surgery",
+          "value": "Arm Surgery",
+          "checked": false
+        }
+      ],
+      "otherSurgeries": null
     }
   ]
 }

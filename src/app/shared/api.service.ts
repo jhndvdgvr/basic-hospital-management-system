@@ -23,6 +23,13 @@ export class ApiService {
     }))
   }
 
+  getPatientInfo(id:number){
+    return this.http.get<any>("http://localhost:3000/patients/"+id)
+    .pipe(map((res:any)=>{
+      return res;
+    }))
+  }
+
   updatePatient(data : any, id:number){
     return this.http.put<any>("http://localhost:3000/patients/"+id, data)
     .pipe(map((res:any)=>{
@@ -32,6 +39,20 @@ export class ApiService {
 
   deletePatient(data : any, id:number){
     return this.http.delete<any>("http://localhost:3000/patients/"+id, data)
+    .pipe(map((res:any)=>{
+      return res;
+    }))
+  }
+
+  addHistory(data : any){
+    return this.http.post<any>("http://localhost:3000/history", data)
+    .pipe(map((res:any)=>{
+      return res;
+    }))
+  }
+
+  getPatientHistory(id:number){
+    return this.http.get<any>("http://localhost:3000/history/"+id)
     .pipe(map((res:any)=>{
       return res;
     }))
