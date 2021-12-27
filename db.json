@@ -85,6 +85,65 @@
         }
       ],
       "otherSurgeries": null
+    },
+    {
+      "id": 5,
+      "height": "167",
+      "weight": "77",
+      "bmi": "2.51",
+      "smoking": "Casual Smoker",
+      "alcohol": "Casual Drinker",
+      "drugUsage": [
+        {
+          "label": "Amphetamines",
+          "value": "Amphetamines",
+          "checked": false
+        },
+        {
+          "label": "Heroine",
+          "value": "Heroine",
+          "checked": false
+        },
+        {
+          "label": "Barbiturates",
+          "value": "Barbiturates",
+          "checked": false
+        },
+        {
+          "label": "Marijuana",
+          "value": "Marijuana",
+          "checked": false
+        },
+        {
+          "label": "No Drugs",
+          "value": "No Drugs",
+          "checked": true
+        }
+      ],
+      "otherDrugUsage": null,
+      "surgeries": [
+        {
+          "label": "Heart Surgeries",
+          "value": "Heart Surgeries",
+          "checked": false
+        },
+        {
+          "label": "Breast Surgery",
+          "value": "Breast Surgery",
+          "checked": false
+        },
+        {
+          "label": "Leg Surgery",
+          "value": "Leg Surgery",
+          "checked": false
+        },
+        {
+          "label": "Arm Surgery",
+          "value": "Arm Surgery",
+          "checked": false
+        }
+      ],
+      "otherSurgeries": null
     }
   ]
 }

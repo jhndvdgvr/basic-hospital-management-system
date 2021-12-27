@@ -98,13 +98,11 @@ export class PatientDetailsComponent implements OnInit {
     this.patientId = id;
     this.api.getPatientInfo(id)
     .subscribe(result => {
-      console.log(result);
       this.patientDetails = result
     });
 
     this.api.getPatientHistory(id)
     .subscribe(result => {
-      console.log(result);
       this.patientHistory = result;
       this.validateForm.controls["height"].setValue(result.height);
       this.validateForm.controls["weight"].setValue(result.weight);
@@ -123,18 +121,13 @@ export class PatientDetailsComponent implements OnInit {
   }
 
   submitForm(){
-    console.log("123213213")
-    console.log(this.validateForm.controls)
     if (this.validateForm.valid) {
-      console.log(this.patientHistory)
       if (this.patientHistory === undefined) {
-        console.log("add");
         this.addPatientHistory();
       } else {
         this.updatePatientHistory()
       }
     } else {
-      console.log("HEREEEE")
       Object.values(this.validateForm.controls).forEach(control => {
         console.log(control.value, control.invalid)
         if (control.invalid) {

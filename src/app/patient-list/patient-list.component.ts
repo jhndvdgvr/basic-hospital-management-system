@@ -125,7 +125,7 @@ export class PatientListComponent implements OnInit {
     this.patientModelObj.age = this.validateForm.value.age;
     this.patientModelObj.sex = this.validateForm.value.sex;
     this.patientModelObj.checkInDate = moment(this.validateForm.value.checkInDate).format("MM/DD/yyyy");
-    console.log(this.patientModelObj)
+    
     this.api.updatePatient(this.patientModelObj, this.patientModelObj.id)
     .subscribe(result => {
       this.notification.create(
